@@ -1,4 +1,4 @@
-package br.com.devdojo.awesome.util;
+package br.com.mateus.awesome.util;
 
 import org.springframework.stereotype.Component;
 

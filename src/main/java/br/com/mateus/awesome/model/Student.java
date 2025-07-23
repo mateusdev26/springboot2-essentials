@@ -1,4 +1,4 @@
-package br.com.devdojo.awesome.model;
+package br.com.mateus.awesome.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,7 +1,7 @@
-package br.com.devdojo.awesome.endpoint;
+package br.com.mateus.awesome.endpoint;
 
-import br.com.devdojo.awesome.model.Student;
-import br.com.devdojo.awesome.util.DateUtil;
+import br.com.mateus.awesome.model.Student;
+import br.com.mateus.awesome.util.DateUtil;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
