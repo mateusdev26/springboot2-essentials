@@ -1,10 +1,12 @@
 package br.com.devdojo.awesome.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class Student {
     private String name ;
     private int age ;
@@ -12,13 +14,5 @@ public class Student {
     public Student(String name) {
         this.name = name;
     }
-
-    public Student(String name, int age, char genger) {
-        this.name = name;
-        this.age = age;
-        this.genger = genger;
-
-    }
-
     public Student(){}
 }
