@@ -1,4 +1,4 @@
-package br.com.mateus.springboot2.util;
+package br.com.mateus.springboot2_essentials.util;
 
 import org.springframework.stereotype.Component;
 

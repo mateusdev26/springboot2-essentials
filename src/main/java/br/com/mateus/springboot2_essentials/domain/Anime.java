@@ -1,4 +1,4 @@
-package br.com.mateus.springboot2.domain;
+package br.com.mateus.springboot2_essentials.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
