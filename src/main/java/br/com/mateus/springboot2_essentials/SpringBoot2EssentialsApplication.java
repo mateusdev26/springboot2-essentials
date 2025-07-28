@@ -6,11 +6,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @Log4j2
-public class Springboot2EssentialsApplication {
+public class SpringBoot2EssentialsApplication {
 
     public static void main(String[] args) {
         log.info("The Spring boot application is starting");
-		SpringApplication.run(Springboot2EssentialsApplication.class, args);
+		SpringApplication.run(SpringBoot2EssentialsApplication.class, args);
 		log.info("The Spring boot application start");
 	}
 
