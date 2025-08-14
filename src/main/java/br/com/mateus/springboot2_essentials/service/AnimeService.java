@@ -1,6 +1,7 @@
 package br.com.mateus.springboot2_essentials.service;
 
 import br.com.mateus.springboot2_essentials.domain.Anime;
+import br.com.mateus.springboot2_essentials.mapper.AnimeMapper;
 import br.com.mateus.springboot2_essentials.repository.AnimeRepository;
 import br.com.mateus.springboot2_essentials.request.AnimePostRequestBody;
 import br.com.mateus.springboot2_essentials.request.AnimePutRequestBody;
@@ -29,7 +30,7 @@ public class AnimeService {
     }
 
     public Anime save(AnimePostRequestBody animePostRequestBody) {
-        Anime anime = Anime.builder().name(animePostRequestBody.getName()).build();
+        Anime anime = AnimeMapper.INSTANCE.toAnime(animePostRequestBody);
         return animeRepository.save(anime);
     }
 
@@ -39,9 +40,7 @@ public class AnimeService {
 
     public void replace(AnimePutRequestBody animePutRequestBody) {
         Anime savedAnime = findByIdOrThrowBadRequestException(animePutRequestBody.getId());
-        Anime newAnime = Anime.builder()
-                .name(animePutRequestBody.getName())
-                .build();
+        Anime newAnime = AnimeMapper.INSTANCE.toAnime(animePutRequestBody);
         animeRepository.delete(savedAnime);
         animeRepository.save(newAnime);
     }
