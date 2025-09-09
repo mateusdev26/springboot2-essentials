@@ -12,5 +12,5 @@ public class BadRequestExceptionDetails {
     private int status;
     private String details;
     private String developerMessage;
-    private LocalDateTime timestamp;
+    private String timestamp;
 }
