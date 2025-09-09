@@ -1,6 +1,7 @@
 package br.com.mateus.springboot2_essentials.service;
 
 import br.com.mateus.springboot2_essentials.domain.Anime;
+import br.com.mateus.springboot2_essentials.exception.BadRequestException;
 import br.com.mateus.springboot2_essentials.mapper.AnimeMapper;
 import br.com.mateus.springboot2_essentials.repository.AnimeRepository;
 import br.com.mateus.springboot2_essentials.request.AnimePostRequestBody;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class AnimeService {
@@ -29,9 +29,8 @@ public class AnimeService {
                 .stream()
                 .filter(a -> a.getId().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not found"));
+                .orElseThrow(() -> new BadRequestException("Anime not found"));
     }
-
     public Anime save(AnimePostRequestBody animePostRequestBody) {
         Anime anime = AnimeMapper.INSTANCE.toAnime(animePostRequestBody);
         return animeRepository.save(anime);
