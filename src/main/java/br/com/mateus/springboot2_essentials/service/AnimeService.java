@@ -6,6 +6,7 @@ import br.com.mateus.springboot2_essentials.mapper.AnimeMapper;
 import br.com.mateus.springboot2_essentials.repository.AnimeRepository;
 import br.com.mateus.springboot2_essentials.request.AnimePostRequestBody;
 import br.com.mateus.springboot2_essentials.request.AnimePutRequestBody;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -31,9 +32,9 @@ public class AnimeService {
                 .findFirst()
                 .orElseThrow(() -> new BadRequestException("Anime not found"));
     }
+    @Transactional
     public Anime save(AnimePostRequestBody animePostRequestBody) {
-        Anime anime = AnimeMapper.INSTANCE.toAnime(animePostRequestBody);
-        return animeRepository.save(anime);
+        return animeRepository.save(AnimeMapper.INSTANCE.toAnime(animePostRequestBody));
     }
 
     public void delete(long id) {
