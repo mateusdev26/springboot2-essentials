@@ -1,8 +1,11 @@
 package br.com.mateus.springboot2_essentials.request;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class AnimePostRequestBody {
-    String name ;
+    @NotEmpty(message = "The anime name cannot be empty")
+    private String name ;
 }
