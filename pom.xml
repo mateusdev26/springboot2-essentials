@@ -10,7 +10,7 @@
     </parent>
     <groupId>br.com.mateus</groupId>
     <artifactId>springboot2-essentials</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>springboot2-essentials</name>
     <description>A simple project to learn spring boot 2 essentials</description>
     <packaging>jar</packaging>
