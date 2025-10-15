@@ -6,6 +6,7 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "anime_tbl")
 @Entity
 @Builder
 public class Anime {
