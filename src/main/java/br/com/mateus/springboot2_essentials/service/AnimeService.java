@@ -8,11 +8,14 @@ import br.com.mateus.springboot2_essentials.request.AnimePostRequestBody;
 import br.com.mateus.springboot2_essentials.request.AnimePutRequestBody;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+@Log4j2
 @Service
 @RequiredArgsConstructor
 public class AnimeService {
@@ -34,7 +37,10 @@ public class AnimeService {
     }
     @Transactional
     public Anime save(AnimePostRequestBody animePostRequestBody) {
-        return animeRepository.save(AnimeMapper.INSTANCE.toAnime(animePostRequestBody));
+        log.info("Anime post request body : "+animePostRequestBody);
+        Anime anime = AnimeMapper.INSTANCE.toAnime(animePostRequestBody);
+        log.info("Anime : "+ anime);
+        return animeRepository.save(anime);
     }
 
     public void delete(long id) {
