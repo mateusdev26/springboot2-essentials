@@ -9,10 +9,9 @@ import br.com.mateus.springboot2_essentials.request.AnimePutRequestBody;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 @Log4j2
@@ -20,19 +19,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AnimeService {
     private final AnimeRepository animeRepository;
-
-    public List<Anime> listAll() {
-        return animeRepository.findAll();
+    public Page<Anime> listAll(Pageable pageable) {
+        return animeRepository.findAll(pageable);
     }
     public List<Anime> findByName(String name) {
         return animeRepository.findByName(name);
     }
 
     public Anime findByIdOrThrowBadRequestException(long id) {
-        return listAll()
-                .stream()
-                .filter(a -> a.getId().equals(id))
-                .findFirst()
+        return animeRepository.findById(id)
                 .orElseThrow(() -> new BadRequestException("Anime not found"));
     }
     @Transactional

@@ -7,7 +7,8 @@ import br.com.mateus.springboot2_essentials.service.AnimeService;
 import br.com.mateus.springboot2_essentials.util.DateUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,14 +23,15 @@ public class AnimeController {
     private final AnimeService animeService;
 
     @GetMapping
-    public ResponseEntity<List<Anime>> list() {
-        return ResponseEntity.ok(animeService.listAll());
+    public ResponseEntity<Page<Anime>> list(Pageable pageble) {
+        return ResponseEntity.ok(animeService.listAll(pageble));
     }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Anime> findById(@PathVariable long id) {
         return ResponseEntity.ok(animeService.findByIdOrThrowBadRequestException(id));
     }
+
     @GetMapping(path = "/find")
     public ResponseEntity<List<Anime>> findById(@RequestParam String name) {
         return ResponseEntity.ok(animeService.findByName(name));
@@ -45,8 +47,9 @@ public class AnimeController {
         animeService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
     @PutMapping
-   public ResponseEntity<Void> replace(@RequestBody AnimePutRequestBody animePutRequestBody){
+    public ResponseEntity<Void> replace(@RequestBody AnimePutRequestBody animePutRequestBody) {
         animeService.replace(animePutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
