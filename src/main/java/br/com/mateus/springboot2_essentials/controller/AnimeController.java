@@ -23,8 +23,12 @@ public class AnimeController {
     private final AnimeService animeService;
 
     @GetMapping
-    public ResponseEntity<Page<Anime>> list(Pageable pageble) {
-        return ResponseEntity.ok(animeService.listAll(pageble));
+    public ResponseEntity<Page<Anime>> list(Pageable pageable) {
+        return ResponseEntity.ok(animeService.list(pageable));
+    }
+    @GetMapping(path = "/all")
+    public ResponseEntity<List<Anime>> listAll() {
+        return ResponseEntity.ok(animeService.listAllNonPageable());
     }
 
     @GetMapping(path = "/{id}")
