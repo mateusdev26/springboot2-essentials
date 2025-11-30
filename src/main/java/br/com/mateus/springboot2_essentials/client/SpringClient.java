@@ -1,10 +1,10 @@
 package br.com.mateus.springboot2_essentials.client;
 
 import br.com.mateus.springboot2_essentials.domain.Anime;
+import br.com.mateus.springboot2_essentials.request.AnimePostRequestBody;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -29,9 +29,29 @@ public class SpringClient {
                 "http://localhost:8080/animes/all",
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<>(){}
+                new ParameterizedTypeReference<>() {
+                }
         );
 
         log.info(all.getBody());
+
+        AnimePostRequestBody boruto = new AnimePostRequestBody("Boruto");
+        Anime savedBoruto = new RestTemplate().postForObject("http://localhost:8080/animes", boruto, Anime.class);
+        log.info("Saved anime {}", savedBoruto);
+
+        AnimePostRequestBody dragonball = new AnimePostRequestBody("Dragon Ball");
+        ResponseEntity<Anime> savedDragonBall = new RestTemplate().exchange(
+                "http://localhost:8080/animes",
+                HttpMethod.POST,
+                new HttpEntity<>(dragonball,createHttpHeaders()),
+                Anime.class
+        );
+       log.info("Saved anime {}",savedDragonBall);
+
+    }
+    private static HttpHeaders createHttpHeaders(){
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        return httpHeaders;
     }
 }
