@@ -1,0 +1,23 @@
+Creating network "springboot2-essentials_default" with the default driver
+Creating spring-boot ... 
+Creating spring-boot ... done
+Attaching to spring-boot
+[36mspring-boot |[0m 2025-12-03 16:02:04+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 9.4.0-1.el9 started.
+[36mspring-boot |[0m 2025-12-03 16:02:05+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+[36mspring-boot |[0m 2025-12-03 16:02:05+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 9.4.0-1.el9 started.
+[36mspring-boot |[0m '/var/lib/mysql/mysql.sock' -> '/var/run/mysqld/mysqld.sock'
+[36mspring-boot |[0m 2025-12-03T16:02:06.444058Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+[36mspring-boot |[0m 2025-12-03T16:02:07.011794Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 9.4.0) starting as process 1
+[36mspring-boot |[0m 2025-12-03T16:02:07.011957Z 0 [System] [MY-015590] [Server] MySQL Server has access to 4 logical CPUs.
+[36mspring-boot |[0m 2025-12-03T16:02:07.012059Z 0 [System] [MY-015590] [Server] MySQL Server has access to 3984842752 bytes of physical memory.
+[36mspring-boot |[0m 2025-12-03T16:02:07.053478Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+[36mspring-boot |[0m 2025-12-03T16:02:12.200491Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+[36mspring-boot |[0m 2025-12-03T16:02:14.442206Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+[36mspring-boot |[0m 2025-12-03T16:02:14.442409Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+[36mspring-boot |[0m 2025-12-03T16:02:14.504903Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+[36mspring-boot |[0m 2025-12-03T16:02:14.777196Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+[36mspring-boot |[0m 2025-12-03T16:02:14.780377Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '9.4.0'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+Stopping spring-boot ... 
+Killing spring-boot  ... 
+Aborting.
+Gracefully stopping... (press Ctrl+C again to force)
