@@ -1,6 +1,7 @@
 package br.com.mateus.springboot2_essentials.repository;
 
 import br.com.mateus.springboot2_essentials.domain.Anime;
+import jakarta.validation.ConstraintViolationException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -51,6 +52,7 @@ class AnimeRepositoryTest {
         Optional<Anime> animeOptional = this.repository.findById(animeSaved.getId());
         Assertions.assertThat(animeOptional.isEmpty()).isTrue();
     }
+
     @Test
     @DisplayName("Find By Name returns list of anime when successful")
     void findByName_ReturnsListOfAnime_WhenSuccessful() {
@@ -58,11 +60,23 @@ class AnimeRepositoryTest {
         Anime animeSaved = this.repository.save(animeToBeSaved);
         String name = animeSaved.getName();
         List<Anime> animes = this.repository.findByName(name);
-        Assertions.assertThat(animes).isNotEmpty();
-        Assertions.assertThat(animes).contains(animeSaved);
-        
+        Assertions.assertThat(animes).isNotEmpty()
+                .contains(animeSaved);
     }
-
+    @Test
+    @DisplayName("Find By Name returns empty list when anime is not found")
+    void findByName_ReturnsEmptyList_WhenAnimeIsNotFound(){
+        List<Anime> animes = this.repository.findByName("fhgkjrhkjghksjv");
+        Assertions.assertThat(animes).isEmpty();
+    }
+    @Test
+    @DisplayName("Save throw ConstraintViolationException when name is empty")
+    void save_ThrowConstraintViolationException_WhenNameIsEmpty() {
+        Anime anime = new Anime();
+        Assertions.assertThatExceptionOfType(ConstraintViolationException.class)
+                .isThrownBy(()-> this.repository.save(anime))
+                .withMessageContaining("The anime name cannot be empty");
+    }
 
 
     private Anime createAnime() {
