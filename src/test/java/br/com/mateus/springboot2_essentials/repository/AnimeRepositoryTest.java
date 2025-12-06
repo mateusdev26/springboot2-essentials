@@ -1,6 +1,7 @@
 package br.com.mateus.springboot2_essentials.repository;
 
 import br.com.mateus.springboot2_essentials.domain.Anime;
+import br.com.mateus.springboot2_essentials.util.AnimeCreator;
 import jakarta.validation.ConstraintViolationException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -22,7 +23,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Saves persists anime when successful")
     void save_PersistAnime_WhenSuccessful() {
-        Anime animeToBeSaved = createAnime();
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
         Anime animeSaved = this.repository.save(animeToBeSaved);
         Assertions.assertThat(animeSaved).isNotNull();
         Assertions.assertThat(animeSaved.getName()).isNotNull();
@@ -33,7 +34,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Saves updates anime when successful")
     void save_UpdatesAnime_WhenSuccessful() {
-        Anime animeToBeSaved = createAnime();
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
         Anime animeSaved = this.repository.save(animeToBeSaved);
         animeSaved.setName("One piece");
         Anime animeUpdated = this.repository.save(animeSaved);
@@ -46,7 +47,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Delete removes anime when successful")
     void delete_RemovesAnime_WhenSuccessful() {
-        Anime animeToBeSaved = createAnime();
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
         Anime animeSaved = this.repository.save(animeToBeSaved);
         this.repository.delete(animeSaved);
         Optional<Anime> animeOptional = this.repository.findById(animeSaved.getId());
@@ -56,7 +57,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Find By Name returns list of anime when successful")
     void findByName_ReturnsListOfAnime_WhenSuccessful() {
-        Anime animeToBeSaved = createAnime();
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
         Anime animeSaved = this.repository.save(animeToBeSaved);
         String name = animeSaved.getName();
         List<Anime> animes = this.repository.findByName(name);
@@ -76,10 +77,5 @@ class AnimeRepositoryTest {
         Assertions.assertThatExceptionOfType(ConstraintViolationException.class)
                 .isThrownBy(()-> this.repository.save(anime))
                 .withMessageContaining("The anime name cannot be empty");
-    }
-
-
-    private Anime createAnime() {
-        return new Anime(null, "Demon Slayer");
     }
 }

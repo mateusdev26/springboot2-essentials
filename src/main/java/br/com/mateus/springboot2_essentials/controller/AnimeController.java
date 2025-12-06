@@ -19,7 +19,6 @@ import java.util.List;
 @RequestMapping("animes")
 @RequiredArgsConstructor
 public class AnimeController {
-    private final DateUtil dateUtil;
     private final AnimeService animeService;
 
     @GetMapping
