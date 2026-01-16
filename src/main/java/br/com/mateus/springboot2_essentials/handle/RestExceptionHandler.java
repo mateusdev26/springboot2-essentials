@@ -1,5 +1,4 @@
 package br.com.mateus.springboot2_essentials.handle;
-
 import br.com.mateus.springboot2_essentials.exception.BadRequestException;
 import br.com.mateus.springboot2_essentials.exception.BadRequestExceptionDetails;
 import br.com.mateus.springboot2_essentials.exception.ExceptionDetails;
